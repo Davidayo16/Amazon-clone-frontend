@@ -200,18 +200,23 @@ const Header = () => {
               </div>
             </div>
             <div className="col-md-5 col-sm-12 ">
-              <div className="input-group">
+              <form
+                className="input-group"
+                onSubmit={(e) => handleSearch(e, keyword)}
+              >
                 <input
                   type="text"
                   class="form-control"
                   placeholder="Search Product"
                   aria-label="Recipient's username"
                   aria-describedby="basic-addon2"
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value.trim())}
                 />
                 <span className="input-group-text" id="basic-addon2">
                   <FaSearch />
                 </span>
-              </div>
+              </form>
             </div>
           </div>
         </div>

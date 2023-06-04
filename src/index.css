@@ -385,21 +385,39 @@ section .main-banner {
 }
 .carousel-control-next {
   width: 70px;
+  border: 1px solid rgb(127, 133, 134);
 }
+
 .carousel-control-prev {
   width: 70px;
+  border: 1px solid rgb(127, 133, 134);
 }
+.carousel-control-next-icon {
+  color: rgb(31, 44, 58);
+  visibility: hidden;
+}
+.carousel-control-prev-icon {
+  color: rgb(31, 44, 58);
+  visibility: hidden;
+}
+
 .slidee .carousel-control-prev {
   width: 80px;
   z-index: 9;
   position: absolute;
   margin-bottom: 19rem;
 }
-.carousel-control-prev:hover,
-.carousel-control-next:hover {
-  /* background-color: var(--color-info-light); */
+.carousel:hover .carousel-control-next {
   border: 2px solid rgb(101, 130, 133);
-  /* width: 100px; */
+}
+.carousel:hover .carousel-control-prev {
+  border: 2px solid rgb(101, 130, 133);
+}
+.carousel:hover .carousel-control-next-icon {
+  visibility: visible;
+}
+.carousel:hover .carousel-control-prev-icon {
+  visibility: visible;
 }
 
 /* Product detail starts here */
@@ -2063,11 +2081,12 @@ textarea {
     display: none;
   }
   .carousel-control-next {
-    display: none;
+    width: 50px;
   }
   .carousel-control-prev {
-    display: none;
+    width: 50px;
   }
+
   .sort {
     width: 100%;
   }

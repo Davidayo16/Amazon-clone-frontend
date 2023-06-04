@@ -7,6 +7,7 @@ import Loading from "../Loading/Error/Loading";
 import { toast } from "react-toastify";
 import { updateUser } from "../Redux/Action/UserAction";
 import Message from "./../Loading/Error/Error";
+import { ToastContainer } from "react-toastify";
 
 const ProfileTab = () => {
   const dispatch = useDispatch();
@@ -43,20 +44,34 @@ const ProfileTab = () => {
   //****** UPDATE USER FUNCTION****
   const handleUpdate = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.error("Password do not match", Toastobjects);
-      }
-    } else {
-      dispatch(updateUser({ id: user._id, name, email, password }));
-      if (!toast.isActive(toastId.current)) {
-        toastId.current = toast.success("Profile updated", Toastobjects);
-      }
+    if (confirmPassword !== password) {
+      toast(`Password do not match`, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
     }
+    dispatch(updateUser({ id: user._id, name, email, password }));
   };
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       {error && <Message variant="alert-danger">{error}</Message>}
       {loading && <Loading />}
       {updateLoading && <Loading />}

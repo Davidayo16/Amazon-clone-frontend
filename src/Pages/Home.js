@@ -124,6 +124,7 @@ const Home = () => {
                   id="carouselExampleIndicators"
                   class="carousel slide slidee"
                   data-bs-ride="true"
+                  data-bs-touch="true"
                 >
                   <div class="carousel-indicators d-none d-md-flex">
                     <button
@@ -442,9 +443,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2.5,
+                    items: 1.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 2,
+                    slidesToSlide: 1,
                   },
                   tablet: {
                     breakpoint: {
@@ -526,9 +527,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2.5,
+                    items: 1.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 2,
+                    slidesToSlide: 1,
                   },
                   tablet: {
                     breakpoint: {
@@ -813,9 +814,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2.5,
+                    items: 1.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 2,
+                    slidesToSlide: 1,
                   },
                   tablet: {
                     breakpoint: {

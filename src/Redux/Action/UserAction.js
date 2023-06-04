@@ -16,6 +16,7 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
 } from "./../Constants/UserConstants";
+import { ToastContainer, toast } from "react-toastify";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL, // Replace with your environment variable name
@@ -130,9 +131,17 @@ export const updateUser = (user) => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await api.patch("/api/users/profile", user, config);
+    const { data } = await api.put("/api/users/profile", user, config);
     console.log(data);
     dispatch({ type: USER_UPDATE_SUCCESS, payload: data });
+    toast(`Profile Updated`, {
+      position: "top-right",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem("userInfo", JSON.stringify(data));
     console.log(data);
