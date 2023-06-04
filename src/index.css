@@ -445,13 +445,8 @@ section .main-banner {
   margin-bottom: 5px;
 }
 .product-detail-small-img img:hover {
-  background-color: var(--color-background-header);
+  background-color: var(--color-info-light);
   border-radius: 10px;
-}
-.product-detail-big-img {
-  /* border: 2px solid red;  */
-  /* background-color: #dce1eb; */
-  width: 100%;
 }
 
 .detail-title {
