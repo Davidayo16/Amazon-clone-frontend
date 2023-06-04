@@ -320,7 +320,7 @@ const Cart = () => {
                                     </option>
                                   ))}
                                 </select>
-                                <div className="mt-2 mt-md-0 cart-func">
+                                <div className="mt-4 mt-md-0 cart-func">
                                   <h4
                                     className="mb-0 delete"
                                     onClick={() => removeFromCart(item.product)}
@@ -328,7 +328,7 @@ const Cart = () => {
                                     Delete
                                   </h4>
                                 </div>
-                                <div className="mt-2 mt-md-0 cart-func">
+                                <div className="mt-4 mt-md-0 cart-func">
                                   <h4
                                     className="mb-0"
                                     onClick={() => addWishlist(item.product)}
@@ -336,7 +336,7 @@ const Cart = () => {
                                     Add to wishlist
                                   </h4>
                                 </div>
-                                <div className="mt-2 mt-md-0 cart-func">
+                                <div className="mt-4 mt-md-0 cart-func">
                                   <h4 className="mb-0 ">View item</h4>
                                 </div>
                               </div>
