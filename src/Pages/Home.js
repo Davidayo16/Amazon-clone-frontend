@@ -442,9 +442,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2,
+                    items: 2.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 1,
+                    slidesToSlide: 2,
                   },
                   tablet: {
                     breakpoint: {
@@ -526,9 +526,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2,
+                    items: 2.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 1,
+                    slidesToSlide: 2,
                   },
                   tablet: {
                     breakpoint: {
@@ -813,9 +813,9 @@ const Home = () => {
                       max: 464,
                       min: 0,
                     },
-                    items: 2,
+                    items: 2.5,
                     partialVisibilityGutter: 30,
-                    slidesToSlide: 1,
+                    slidesToSlide: 2,
                   },
                   tablet: {
                     breakpoint: {

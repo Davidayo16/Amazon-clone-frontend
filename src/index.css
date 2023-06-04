@@ -35,6 +35,9 @@ html {
   font-size: 14px;
 }
 
+html::-webkit-scrollbar {
+  width: 0 !important;
+}
 /* loading  */
 
 .lds-ring {
@@ -542,11 +545,18 @@ section img {
 }
 
 .categories h3 {
-  color: rgb(5, 7, 8);
-  font-size: 0.7rem;
+  color: rgb(23, 47, 59);
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+.categoriess h3 {
+  color: rgb(23, 47, 59);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 .categories h3:hover {
   text-decoration: underline;
@@ -2050,6 +2060,12 @@ textarea {
     overflow-x: scroll;
   }
   .menu-bottom::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel-control-next {
+    display: none;
+  }
+  .carousel-control-prev {
     display: none;
   }
   .sort {
