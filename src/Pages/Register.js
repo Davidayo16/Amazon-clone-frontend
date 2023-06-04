@@ -14,6 +14,7 @@ const Register = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   // const[confirmPassword, setConfirmPassword]=useState('')
+  console.log("name", name, "email", email, "password", password);
 
   const redirect = location.search ? location.search.split("=")[1] : "/";
   const userRegister = useSelector((state) => state.userRegister);
@@ -56,7 +57,6 @@ const Register = () => {
                     <label>Enter Email</label>
                     <input
                       type="email"
-                      onClick={() => handleRegister()}
                       value={email}
                       required={true}
                       onChange={(e) => setEmail(e.target.value)}

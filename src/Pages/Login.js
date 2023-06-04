@@ -15,8 +15,9 @@ const Login = () => {
   const redirect = location.search ? location.search.split("=")[1] : "/";
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(login(password, email));
+    dispatch(login(email, password));
   };
+  console.log("email", email, "pass", password);
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo, loading, error } = userLogin;

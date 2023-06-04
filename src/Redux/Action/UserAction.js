@@ -24,9 +24,9 @@ const api = axios.create({
 });
 
 //******LOGIN*****
-export const login = (password, email) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
-    console.log(email, password);
+    console.log("email", email, "pass", password);
     dispatch({ type: USER_LOGIN_REQUEST });
     const config = {
       headers: {
@@ -55,6 +55,7 @@ export const login = (password, email) => async (dispatch) => {
 };
 // REGISTER
 export const register = (name, email, password) => async (dispatch) => {
+  console.log("name", name, "email", email, "password", password);
   try {
     dispatch({ type: USER_REGISTER_REQUEST });
     const config = {
@@ -113,10 +114,9 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 };
 
 export const logout = () => (dispatch) => {
-  const Navigate = useNavigate();
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
-  Navigate("/login");
+  document.location.href = "/login";
 };
 
 // UPDATE PROFILE
