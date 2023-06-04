@@ -17,6 +17,7 @@ import {
   USER_DETAILS_FAIL,
 } from "./../Constants/UserConstants";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const api = axios.create({
   baseURL: process.env.REACT_APP_API_URL, // Replace with your environment variable name
@@ -112,9 +113,10 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
 };
 
 export const logout = () => (dispatch) => {
+  const Navigate = useNavigate();
   localStorage.removeItem("userInfo");
   dispatch({ type: USER_LOGOUT });
-  document.location.href = "/login";
+  Navigate("/login");
 };
 
 // UPDATE PROFILE

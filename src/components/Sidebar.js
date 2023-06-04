@@ -119,9 +119,7 @@ const Sidebar = () => {
                       <div className="w-100" onClick={closeSidebar}>
                         <FaSignInAlt />
                         <Link to={"/login"}>
-                          <span onClick={handleLogout} className="mx-1">
-                            Sign In
-                          </span>
+                          <span className="mx-1">Sign In</span>
                         </Link>
                       </div>
                     )}
