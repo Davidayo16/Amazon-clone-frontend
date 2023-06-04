@@ -170,9 +170,9 @@ const Header = () => {
                             </li>
                           </Link>
                           <li onClick={handleLogout}>
-                            <a class="dropdown-item" href="#">
+                            <Link class="dropdown-item" href="#">
                               Logout
-                            </a>
+                            </Link>
                           </li>
                         </ul>
                       </div>
