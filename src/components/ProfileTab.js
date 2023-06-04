@@ -101,7 +101,7 @@ const ProfileTab = () => {
         <div className="profile-input">
           <label htmlFor="password">NEW PASSWORD</label>
           <input
-            type="PASSWORD"
+            type="password"
             id="password"
             className="input-profile"
             value={password}
