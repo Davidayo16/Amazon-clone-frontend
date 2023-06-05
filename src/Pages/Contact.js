@@ -17,8 +17,8 @@ const Contact = () => {
         </div>
         {/* <img src='/images/womenb.jpg'className='img-fluid'/> */}
       </div>
-      {/* <BreadCrumb title='Contact'/> */}
-      <section className="contact-wrapper py-3 mt-3">
+      <BreadCrumb title="Contact" />
+      <section className="contact-wrapper py-2">
         <div className="container">
           <div className="row d-flex justify-content-center align-items-center">
             <div className="col-sm-6 col-12">
@@ -38,13 +38,21 @@ const Contact = () => {
                   <div className="contact-font">
                     <FaAddressBook className="fa" />
                   </div>
-                  <p>davidodimayo7@gmail.com</p>
+                  <p>
+                    <a href="mailto:davidodimayo@gmail.com" className="hotline">
+                      davidodimayo@gmail.com
+                    </a>{" "}
+                  </p>
                 </div>
                 <div className="contact-details">
                   <div className="contact-font">
                     <FaPhone className="fa" />
                   </div>
-                  <p>08103293091</p>
+                  <p>
+                    <a href="tel:+234 8103193091" className="hotline">
+                      +234 8103193091
+                    </a>{" "}
+                  </p>
                 </div>
                 <div className="contact-details">
                   <div className="contact-font">

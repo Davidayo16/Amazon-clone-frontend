@@ -34,9 +34,6 @@ const Blog = () => {
     "DECEMBER",
   ];
 
-  const handleLike = (id) => {};
-
-  const handleDislike = () => {};
   return (
     <>
       <div className="blog-banner">

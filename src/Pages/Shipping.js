@@ -43,7 +43,7 @@ const Shipping = () => {
       <CheckoutWizard activeStep={0} />
       <div className="container">
         <div className="row d-flex justify-content-center">
-          <div className="col-md-6 col-12 shipping-wrapper">
+          <div className="col-md-7 col-12 shipping-wrapper">
             <h1 className="mb-4 mt-4">Shipping Address</h1>
             <div class="mb-3">
               <label for="exampleFormControlInput1" className="form-label">

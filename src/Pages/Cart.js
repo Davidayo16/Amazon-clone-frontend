@@ -284,10 +284,9 @@ const Cart = () => {
                                 <input type="checkbox" />
                                 <h4 className="mb-0">this is a gift</h4>
                               </div>
-                              <div className="mt-2 mb-">
+                              <div className="mt-2">
                                 {item?.rating > 0 ? (
                                   <ReactStars
-                                    className="mt-4 mb-4"
                                     count={5}
                                     size={16}
                                     value={item?.rating}
@@ -298,7 +297,7 @@ const Cart = () => {
                                   <h4>No rating</h4>
                                 )}
                               </div>
-                              <div className="d-md-flex align-items-center justyfy-content-between gap-15 mb-0">
+                              <div className="d-md-flex align-items-center mt-2 justyfy-content-between gap-15 mb-0">
                                 <select
                                   value={item.qty}
                                   onChange={(e) =>
@@ -320,7 +319,7 @@ const Cart = () => {
                                     </option>
                                   ))}
                                 </select>
-                                <div className="mt-4 mt-md-0 cart-func">
+                                <div className="mt-3 mt-md-0 cart-func">
                                   <h4
                                     className="mb-0 delete"
                                     onClick={() => removeFromCart(item.product)}
@@ -328,7 +327,7 @@ const Cart = () => {
                                     Delete
                                   </h4>
                                 </div>
-                                <div className="mt-4 mt-md-0 cart-func">
+                                <div className="mt-3 mt-md-0 cart-func">
                                   <h4
                                     className="mb-0"
                                     onClick={() => addWishlist(item.product)}
@@ -336,7 +335,7 @@ const Cart = () => {
                                     Add to wishlist
                                   </h4>
                                 </div>
-                                <div className="mt-4 mt-md-0 cart-func">
+                                <div className="mt-3 mt-md-0 cart-func">
                                   <h4 className="mb-0 ">View item</h4>
                                 </div>
                               </div>

@@ -1396,8 +1396,9 @@ section img {
   text-align: center;
 }
 .shipping-wrapper {
-  box-shadow: 2px 2px 13px rgb(187, 201, 196);
-  background-color: white;
+  /* box-shadow: 2px 2px 13px rgb(187, 201, 196); */
+  background-color: var(--color-info-light);
+  border: 1px solid rgb(177, 177, 177);
 }
 .shipping-wrapper input:focus {
   /* outline: none !important; */
@@ -1405,11 +1406,11 @@ section img {
   box-shadow: 0 0 6px red;
 }
 .shipping-wrapper select {
-  background-color: #ffffff;
+  background-color: var(--color-info-light);
   border: 1px solid gray;
 }
 .shipping-wrapper input {
-  background-color: #ffffff;
+  background-color: var(--color-info-light);
   border: 1px solid gray;
 }
 .shipping-wrapper label {
@@ -2021,6 +2022,10 @@ textarea {
   }
 }
 @media (max-width: 576px) {
+  .shipping-wrapper {
+    /* box-shadow: 2px 2px 13px rgb(187, 201, 196); */
+    width: 90% !important;
+  }
   .small-banner {
     width: 100%;
     height: 30vh;
