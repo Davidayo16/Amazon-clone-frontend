@@ -336,7 +336,7 @@ const ProductDetail = () => {
                   {product.reviews.map((review) => {
                     return (
                       <div className="reviewss">
-                        <b>{review.name}</b>
+                        <b className="user-text">{review.name}</b>
                         <ReactStars
                           count={5}
                           size={16}
@@ -705,7 +705,7 @@ const ProductDetail = () => {
                 {product.reviews.map((review) => {
                   return (
                     <div className="reviewss">
-                      <b>{review.name}</b>
+                      <b className="user-text">{review.name}</b>
                       <ReactStars
                         count={5}
                         size={16}
