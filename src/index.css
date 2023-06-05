@@ -10,6 +10,8 @@
 
 :root {
   --color-primary: #666fc2;
+  --doc-height: 100%;
+  --doc-width: 100%;
   --color-danger: #ff7782;
   --color-success: #41f1b6;
   --color-warning: #ffbb55;
@@ -35,9 +37,6 @@ html {
   font-size: 14px;
 }
 
-html::-webkit-scrollbar {
-  width: 0 !important;
-}
 /* loading  */
 
 .lds-ring {
@@ -84,8 +83,9 @@ html::-webkit-scrollbar {
 body {
   font-family: "Poppins", sans-serif;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
+  margin: 0;
+  width: var(--doc-width);
+  height: var(--doc-height);
   font-size: 0.85rem;
   background: var(--color-background);
   transition: 0.5s ease;
@@ -1125,7 +1125,7 @@ section img {
   cursor: pointer;
   width: 40px;
   background-color: transparent;
-  color: rgb(64, 112, 121);
+  color: rgb(24, 33, 46);
 }
 .faTimes:hover {
   border: 1px solid gray;
@@ -2178,10 +2178,16 @@ textarea {
     width: 400px;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 395px) {
   .categories > div {
     width: 100%;
     justify-content: space-between;
+  }
+  .reg span {
+    width: 10%;
+    height: 1px;
+    background-color: rgb(185, 185, 185);
+    margin-top: 5px;
   }
   .contact-banner h2 {
     color: white;

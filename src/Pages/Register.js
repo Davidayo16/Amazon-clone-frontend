@@ -78,7 +78,7 @@ const Register = () => {
                   Privacy Notice.
                 </p>
                 <a href="">Forgotten password?</a>
-                <div className="login-bottom py-3">
+                <div className="login-bottom reg py-3">
                   <div className="d-flex gap-10 justify-content-center">
                     <span></span>
                     <p>Already have an account?</p>
