@@ -335,9 +335,11 @@ const Cart = () => {
                                     Add to wishlist
                                   </h4>
                                 </div>
-                                <div className="mt-3 mt-md-0 cart-func">
-                                  <h4 className="mb-0 ">View item</h4>
-                                </div>
+                                <Link to={`/productDetail/${item.product}`}>
+                                  <div className="mt-3 mt-md-0 cart-func">
+                                    <h4 className="mb-0 ">View item</h4>
+                                  </div>
+                                </Link>
                               </div>
                             </div>
                           </div>

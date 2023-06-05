@@ -170,7 +170,7 @@ const ProductDetail = () => {
               <div className="col-4">
                 <div className="d-flex align-items-center gap-10">
                   <div className="product-detail-small-img">
-                    {product.image?.map((imgg, index) => {
+                    {product?.image?.map((imgg, index) => {
                       return (
                         <div
                           className="product-detail-small-img-cont "
@@ -183,7 +183,7 @@ const ProductDetail = () => {
                   </div>
                   <div>
                     <img
-                      src={product.image?.[imageIndex]?.img}
+                      src={product?.image?.[imageIndex]?.img}
                       className="img-fluid product-detail-big-img w-100"
                     />
                   </div>
@@ -192,7 +192,7 @@ const ProductDetail = () => {
               <div className="col-5">
                 <div>
                   <div className="detail-title">
-                    <h2>{product.name}</h2>
+                    <h2>{product?.name}</h2>
                     <Link to={"/store"}>Visit the Amazon Basics Store</Link>
                     <div className="d-flex align-items-center gap-10">
                       <div className="d-flex align-items-center ">
@@ -215,7 +215,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="mt-3 detail-content">
                   <h2 className="past-price">
-                    -5% <sup>$</sup> <span>{product.price}</span>
+                    -5% <sup>$</sup> <span>{product?.price}</span>
                   </h2>
                   {product?.properties?.map((prop) => {
                     return Object?.entries(prop).map(([key, value]) => {
@@ -238,7 +238,7 @@ const ProductDetail = () => {
                 <div className="about-detail">
                   <h2>About this item</h2>
                   <ul>
-                    <li>{product.description}</li>
+                    <li>{product?.description}</li>
                     <li>
                       Lorem Ipsum is simply dummy text of the printing and
                       typesetting industry. Lorem Ipsum has been the industry's
@@ -264,7 +264,7 @@ const ProductDetail = () => {
                     Or fastest delivery {fastestDelDay},{fastestDelMonth}{" "}
                     {fastestDelDate}. Order within 5 hrs 38 mins
                   </h3>
-                  {product.countInStock > 1 ? (
+                  {product?.countInStock > 1 ? (
                     <h3 className="success">Available in stock</h3>
                   ) : (
                     <h4 className="danger">Out of stock</h4>
@@ -276,7 +276,7 @@ const ProductDetail = () => {
                       value={qty}
                       onChange={(e) => setQty(e.target.value)}
                     >
-                      {[...Array(product.countInStock).keys()].map((x) => {
+                      {[...Array(product?.countInStock).keys()].map((x) => {
                         return (
                           <option value={x + 1} key={x + 1}>
                             {x + 1}
@@ -328,12 +328,12 @@ const ProductDetail = () => {
               <div className="review-section row py-4 mt-3 mb-3">
                 <div className="col-8">
                   <p>REVIEWS</p>
-                  {product.reviews.length === 0 && (
+                  {product?.reviews.length === 0 && (
                     <div className="please-login alert-danger">
                       <p className="mb-0">No reviews</p>
                     </div>
                   )}
-                  {product.reviews.map((review) => {
+                  {product?.reviews.map((review) => {
                     return (
                       <div className="reviewss">
                         <b className="user-text">{review.name}</b>
@@ -344,9 +344,9 @@ const ProductDetail = () => {
                           edit={false}
                           activeColor="#ffd700"
                         />
-                        {moment(review.createdAt).calendar()}
+                        {moment(review?.createdAt).calendar()}
                         {/* <p>{moment(review.createdAt).calender()}</p> */}
-                        <div className="commented">{review.comment}</div>
+                        <div className="commented">{review?.comment}</div>
                       </div>
                     );
                   })}
@@ -495,7 +495,7 @@ const ProductDetail = () => {
             <div className="col-sm-6 col-12">
               <div>
                 <div className="detail-title">
-                  <h2>{product.name}</h2>
+                  <h2>{product?.name}</h2>
                   <Link to={"/store"}>Visit the Amazon Basics Store</Link>
                   {product?.rating > 0 ? (
                     <h3 className="mb-0">
@@ -507,8 +507,8 @@ const ProductDetail = () => {
                         edit={false}
                         activeColor="#ffd700"
                       />
-                      {product.numReviews}{" "}
-                      {product.numReviews > 1 ? "ratings" : "rating"}
+                      {product?.numReviews}{" "}
+                      {product?.numReviews > 1 ? "ratings" : "rating"}
                     </h3>
                   ) : (
                     <h3>No ratings</h3>
@@ -516,7 +516,7 @@ const ProductDetail = () => {
                 </div>
                 <div className="d-flex align-items-center  gap-10">
                   <div className="product-detail-small-img gap-10 w-20">
-                    {product.image?.map((imgg, index) => {
+                    {product?.image?.map((imgg, index) => {
                       return (
                         <div
                           className="product-detail-small-img-cont "
@@ -529,7 +529,7 @@ const ProductDetail = () => {
                   </div>
                   <div>
                     <img
-                      src={product.image?.[imageIndex]?.img}
+                      src={product?.image?.[imageIndex]?.img}
                       className="img-fluid product-detail-big-img w-100"
                     />
                   </div>
@@ -537,7 +537,7 @@ const ProductDetail = () => {
               </div>
               <div className="mt-3 detail-content">
                 <h2 className="past-price">
-                  -5% <sup>$</sup> <span>{product.price}</span> <sup>$</sup>
+                  -5% <sup>$</sup> <span>{product?.price}</span> <sup>$</sup>
                 </h2>
                 {/* <h3>Style: <b>Alarm Clock</b></h3> */}
                 {product?.properties?.map((prop) => {
@@ -574,7 +574,7 @@ const ProductDetail = () => {
                   Or fastest delivery {fastestDelDay}, {fastestDelMonth}{" "}
                   {fastestDelDate}. Order within 5 hrs 38 mins
                 </h3>
-                {product.countInStock > 1 ? (
+                {product?.countInStock > 1 ? (
                   <h3 className="success">Available in stock</h3>
                 ) : (
                   <h4 className="danger">Out of Stock</h4>
@@ -586,7 +586,7 @@ const ProductDetail = () => {
                     value={qty}
                     onChange={(e) => setQty(e.target.value)}
                   >
-                    {[...Array(product.countInStock).keys()].map((x) => {
+                    {[...Array(product?.countInStock).keys()].map((x) => {
                       return (
                         <option value={x + 1} key={x + 1}>
                           {x + 1}
@@ -639,7 +639,7 @@ const ProductDetail = () => {
               <div className="about-detail">
                 <h2>About this item</h2>
                 <ul>
-                  <li>{product.description}</li>
+                  <li>{product?.description}</li>
                 </ul>
               </div>
             </div>
@@ -697,15 +697,15 @@ const ProductDetail = () => {
               </div>
               <div className="col-sm-8 col-12">
                 <p>REVIEWS</p>
-                {product.reviews.length === 0 && (
+                {product?.reviews.length === 0 && (
                   <div className="please-login alert-danger">
                     <p className="mb-0">No reviews</p>
                   </div>
                 )}
-                {product.reviews.map((review) => {
+                {product?.reviews.map((review) => {
                   return (
                     <div className="reviewss">
-                      <b className="user-text">{review.name}</b>
+                      <b className="user-text">{review?.name}</b>
                       <ReactStars
                         count={5}
                         size={16}
@@ -715,7 +715,7 @@ const ProductDetail = () => {
                       />
                       {moment(review.createdAt).calendar()}
                       {/* <p>{moment(review.createdAt).calender()}</p> */}
-                      <div className="commented">{review.comment}</div>
+                      <div className="commented">{review?.comment}</div>
                     </div>
                   );
                 })}
