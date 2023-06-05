@@ -43,10 +43,12 @@ html::-webkit-scrollbar {
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 50px;
+  width: 100%;
   height: 50px;
   margin: auto;
-  /* margin-top: 30px; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
 }
 .lds-ring div {
   box-sizing: border-box;
