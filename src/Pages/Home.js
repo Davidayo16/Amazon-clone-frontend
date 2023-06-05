@@ -440,7 +440,7 @@ const Home = () => {
                           max: 3000,
                           min: 1024,
                         },
-                        items: 6,
+                        items: 5,
                         partialVisibilityGutter: 40,
                       },
                       mobile: {
@@ -524,7 +524,7 @@ const Home = () => {
                           max: 3000,
                           min: 1024,
                         },
-                        items: 6,
+                        items: 5,
                         partialVisibilityGutter: 40,
                       },
                       mobile: {
@@ -551,7 +551,7 @@ const Home = () => {
                     shouldResetAutoplay
                     showDots={false}
                     sliderClass=""
-                    slidesToSlide={6}
+                    slidesToSlide={5}
                     swipeable
                   >
                     {bestProducts?.map((prod) => {
@@ -813,8 +813,8 @@ const Home = () => {
                           max: 3000,
                           min: 1024,
                         },
-                        items: 6,
-                        partialVisibilityGutter: 40,
+                        items: 5,
+                        partialVisibilityGutter: 30,
                       },
                       mobile: {
                         breakpoint: {
