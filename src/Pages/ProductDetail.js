@@ -329,8 +329,8 @@ const ProductDetail = () => {
                 <div className="col-8">
                   <p>REVIEWS</p>
                   {product.reviews.length === 0 && (
-                    <div>
-                      <Message variant="alert-danger">No reviews</Message>
+                    <div className="please-login alert-danger">
+                      <p className="mb-0">No reviews</p>
                     </div>
                   )}
                   {product.reviews.map((review) => {
@@ -394,9 +394,9 @@ const ProductDetail = () => {
                       </div>
                     </form>
                   ) : (
-                    <div className="please-login danger">
-                      <p>
-                        Please <Link href="/login">"Login"</Link> to write a
+                    <div className="please-login alert-danger">
+                      <p className="mb-0">
+                        Please <Link to={"/login"}>"Login"</Link> to write a
                         review
                       </p>
                     </div>
@@ -688,8 +688,8 @@ const ProductDetail = () => {
                   </form>
                 ) : (
                   <div className="please-login alert-danger">
-                    <p>
-                      Please <Link href="/login">"Login"</Link> to write a
+                    <p className="mb-0">
+                      Please <Link to={"/login"}>"Login"</Link> to write a
                       review
                     </p>
                   </div>
@@ -698,8 +698,8 @@ const ProductDetail = () => {
               <div className="col-sm-8 col-12">
                 <p>REVIEWS</p>
                 {product.reviews.length === 0 && (
-                  <div>
-                    <Message variant="alert-danger">No reviews</Message>
+                  <div className="please-login alert-danger">
+                    <p className="mb-0">No reviews</p>
                   </div>
                 )}
                 {product.reviews.map((review) => {

@@ -85,7 +85,7 @@ const Header = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        <p className="mb-0 ">
+                        <p className="mb-0 user-text">
                           Hello <br />
                           {userInfo.name}
                         </p>
@@ -156,7 +156,7 @@ const Header = () => {
                           data-bs-toggle="dropdown"
                           aria-expanded="false"
                         >
-                          <p className="mb-0 ">
+                          <p className="mb-0 user-text">
                             Hello <br />
                             {userInfo.name}
                           </p>

@@ -81,7 +81,7 @@ const ProfileTab = () => {
           <input
             type="text"
             id="name"
-            className="input-profile"
+            className="input-profile name"
             required
             value={name}
             onChange={(e) => setName(e.target.value)}

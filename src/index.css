@@ -706,6 +706,7 @@ section img {
 }
 .brand {
   color: red;
+  text-transform: capitalize;
 }
 
 .product-title {
@@ -1397,8 +1398,8 @@ section img {
 }
 .shipping-wrapper {
   /* box-shadow: 2px 2px 13px rgb(187, 201, 196); */
-  background-color: var(--color-info-light);
-  border: 1px solid rgb(177, 177, 177);
+  /* background-color: var(--color-info-light); */
+  border: 1px solid rgb(188, 202, 200);
 }
 .shipping-wrapper input:focus {
   /* outline: none !important; */
@@ -1577,10 +1578,14 @@ section img {
   border-bottom: 1px solid gray;
   background-color: rgb(242, 248, 248);
 }
+.user-text {
+  text-transform: capitalize;
+}
 .profile-name {
   margin-bottom: 30px;
   padding: 10px;
   color: black;
+  text-transform: capitalize;
 }
 .profile-name p {
   margin-top: 5px;
@@ -1621,7 +1626,8 @@ section img {
   border-radius: 50%;
 }
 .activee {
-  background-color: rgb(94, 218, 218);
+  background-color: rgb(149, 174, 184);
+  color: white;
   transition: 0.2s ease-in;
 }
 .order-body {
@@ -1652,12 +1658,13 @@ section img {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
 }
 .profile-input {
-  width: 50%;
+  width: 49%;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  /* padding: 10px; */
 }
 .profile-input label {
   color: gray;
@@ -1668,14 +1675,18 @@ section img {
   border: none;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: rgb(211, 248, 236);
+  /* background-color: rgb(211, 248, 236); */
+  background-color: var(--color-info-light);
   border-radius: 5px;
+}
+.input-profile.name {
+  text-transform: capitalize;
 }
 .update-btn {
   width: 100%;
   text-align: center;
   padding: 10px;
-  background-color: #e98b11;
+  background-color: #d4ac26;
   cursor: pointer;
   color: white;
   border: none;
@@ -2154,7 +2165,6 @@ textarea {
     width: 100%;
     display: flex;
     flex-direction: column;
-    padding: 10px;
   }
   .none {
     display: none;

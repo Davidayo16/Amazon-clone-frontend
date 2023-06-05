@@ -67,7 +67,9 @@ const Sidebar = () => {
               </div>
             </div>
             <div className="sidebar-main mt-4">
-              {userInfo && <h4>Welcome {userInfo?.name}</h4>}
+              {userInfo && (
+                <h4 className="user-text">Welcome {userInfo?.name}</h4>
+              )}
               <div className="sidebar-container">
                 <ul className="sidebar-list ps-0 ">
                   <li className="p-0">
