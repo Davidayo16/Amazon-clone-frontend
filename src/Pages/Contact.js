@@ -40,7 +40,7 @@ const Contact = () => {
                   </div>
                   <p>
                     <a href="mailto:davidodimayo@gmail.com" className="hotline">
-                      davidodimayo@gmail.com
+                      davidodimayo7@gmail.com
                     </a>{" "}
                   </p>
                 </div>
@@ -156,11 +156,11 @@ const Contact = () => {
                 </div>
                 <div className="d-flex gap-55 im">
                   {/* <div className='contact-profile-img'> */}
-                  <img src="/images/dave.jpg" className="img-fluid" />
+                  <img src="/images/seid.jpg" className="img-fluid" />
                   {/* </div> */}
                   <div className="contact-name">
-                    <h3>Moses Odimayo</h3>
-                    <h3>Senior Software Enginerr</h3>
+                    <h3>Ahmed Seidhat</h3>
+                    <h3>Senior Graphic Designer</h3>
                     <h3>Phone: 08103193091</h3>
                     <h3>Email: davidodimayo7@gmail.com</h3>
                   </div>

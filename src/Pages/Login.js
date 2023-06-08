@@ -32,7 +32,7 @@ const Login = () => {
     <>
       <div className="login-wrapper py-4">
         <div className="row">
-          <div className="col-12 d-flex justify-content-center">
+          <div className="col-12 d-flex r">
             <div className="login-container">
               <div className="login-logo">
                 <img src="/images/amazon.png" />
