@@ -38,6 +38,7 @@ import { addToCart } from "./../Redux/Action/CartActions";
 import { ToastContainer, toast } from "react-toastify";
 import { getUserDetails } from "../Redux/Action/UserAction";
 import Loading from "../Loading/Error/Loading";
+import LazyLoading from "./../Loading/Error/LazyLoading";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -94,16 +95,27 @@ const Home = () => {
   }, [dispatch]);
 
   // ****** ADD TO WISHLIST
+  const product = products?.map((prod) => prod);
+
   const addWishlist = (proId) => {
-    console.log(proId);
-    // const addToWishlist = !user.wishlist.includes(proId)
     dispatch(addToWishlist({ proId }));
+    setIsLiked(!isLiked);
   };
+  const [isLiked, setIsLiked] = React.useState(false);
+  const wish = user?.wishlist?.map((prod) => prod?._id);
+
+  React.useEffect(() => {
+    setIsLiked(
+      products
+        ?.filter((pro) => pro?._id === product?._id)
+        .some((p) => wish?.includes(p?._id))
+    );
+  }, []);
 
   return (
     <>
       {loadingBlog && loadingCat && loadingCatt && loading ? (
-        <Loading />
+        <LazyLoading />
       ) : (
         <>
           <ToastContainer
@@ -606,62 +618,14 @@ const Home = () => {
                       <h2 className="section-heading">Amazons choice</h2>
                     </div>
                   )}
-                  {products.map((prod) => {
+                  {products?.map((product) => {
+                    console.log(product?.image);
                     return (
-                      <div className="col-12 col-sm-4 col-md-3 col-xl-2">
-                        <div className="productCard">
-                          <h3 className="ama-choice">
-                            Amazons <span>Choice</span>
-                          </h3>
-                          <div className="product-img">
-                            <img src={prod?.image?.[0].img} />
-                            <div className="action-bar">
-                              <div className="d-flex action-icon-cont">
-                                <div
-                                  className="action-icon"
-                                  onClick={(e) => AddToCartHandler(prod?._id)}
-                                >
-                                  <FaShoppingCart />
-                                </div>
-                                <Link
-                                  className="action-icon"
-                                  to={`/productDetail/${prod?._id}`}
-                                >
-                                  <FaEye />
-                                </Link>
-                                <div
-                                  className="action-icon"
-                                  onClick={(e) => addWishlist(prod?._id)}
-                                >
-                                  <FaHeart
-                                    className={
-                                      user?.wishlist?.includes(prod?._id)
-                                        ? "heart"
-                                        : ""
-                                    }
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="product-content">
-                            <h3 className="brand">{prod?.brand}</h3>
-                            <h3 className="product-title">{prod?.name}</h3>
-                            <div className="d-flex align-items-center ">
-                              <ReactStars
-                                count={5}
-                                size={16}
-                                value={prod?.rating}
-                                edit={false}
-                                activeColor="#ffd700"
-                              />
-                              {prod?.rating === 0 && (
-                                <p className="mb-0">(No rating)</p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <ProductCard
+                        product={product}
+                        products={products}
+                        grid={4}
+                      />
                     );
                   })}
                 </div>

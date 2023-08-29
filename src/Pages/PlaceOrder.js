@@ -55,7 +55,7 @@ const PlaceOrder = () => {
     }
   }, []);
   const orderCreate = useSelector((state) => state.orderCreate);
-  const { order, success, error } = orderCreate;
+  const { order, success, error, loading } = orderCreate;
   console.log(order);
 
   React.useEffect(() => {
@@ -64,6 +64,7 @@ const PlaceOrder = () => {
       dispatch({ type: ORDER_CREATE_RESET });
     }
   }, [history, dispatch, success]);
+
   const handlePlaceOrder = (e) => {
     dispatch(
       createOrder({
@@ -181,8 +182,17 @@ const PlaceOrder = () => {
                 </table>
                 <button
                   className="placeorder-btn my-0"
+                  type="button"
+                  disabled={loading}
                   onClick={(e) => handlePlaceOrder(e)}
                 >
+                  {loading && (
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  )}
                   PLACE ORDER
                 </button>
               </div>
@@ -226,10 +236,18 @@ const PlaceOrder = () => {
                   </tbody>
                 </table>
                 <button
-                  type="submit"
                   className="placeorder-btn my-0"
+                  type="button"
+                  disabled={loading}
                   onClick={(e) => handlePlaceOrder(e)}
                 >
+                  {loading && (
+                    <span
+                      class="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  )}
                   PLACE ORDER
                 </button>
               </div>

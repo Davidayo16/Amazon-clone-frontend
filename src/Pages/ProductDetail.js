@@ -20,6 +20,8 @@ import Loading from "./../Loading/Error/Loading";
 import Carousel from "react-multi-carousel";
 import { useLocation } from "react-router-dom";
 import "react-multi-carousel/lib/styles.css";
+
+import LazyLoading from "./../Loading/Error/LazyLoading";
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const [imageIndex, setImageIndex] = React.useState(0);
@@ -158,656 +160,671 @@ const ProductDetail = () => {
         theme="light"
       />
 
-      <div className="product-detail-wrapper">
-        <div className="container-xxl">
-          <BreadCrumb title={product?.name} />
+      {product ? (
+        <div className="product-detail-wrapper">
+          <div className="container-xxl">
+            <BreadCrumb title={product && product?.name} />
 
-          {/* FOR LARGE SCREEN */}
-          {loading ? (
-            <Loading />
-          ) : (
-            <div className="row d-none d-lg-flex">
-              <div className="col-4">
-                <div className="d-flex align-items-center gap-10">
-                  <div className="product-detail-small-img">
-                    {product?.image?.map((imgg, index) => {
-                      return (
-                        <div
-                          className="product-detail-small-img-cont "
-                          onMouseOver={() => setImageIndex(index)}
-                        >
-                          <img src={imgg.img} className="img-fluid" />
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <img
-                      src={product?.image?.[imageIndex]?.img}
-                      className="img-fluid product-detail-big-img w-100"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="col-5">
-                <div>
-                  <div className="detail-title">
-                    <h2>{product?.name}</h2>
-                    <Link to={"/store"}>Visit the Amazon Basics Store</Link>
-                    <div className="d-flex align-items-center gap-10">
-                      <div className="d-flex align-items-center ">
-                        <ReactStars
-                          count={5}
-                          size={16}
-                          value={product?.rating}
-                          edit={false}
-                          activeColor="#ffd700"
-                        />
-                        {product?.rating === 0 && (
-                          <p className="mb-0">(No rating)</p>
-                        )}
-                      </div>
-                    </div>
-                    {product?.numReviews > 0 && (
-                      <p>{product?.numReviews} ratings</p>
-                    )}
-                  </div>
-                </div>
-                <div className="mt-3 detail-content">
-                  <h2 className="past-price">
-                    -5% <sup>$</sup> <span>{product?.price}</span>
-                  </h2>
-                  {product?.properties?.map((prop) => {
-                    return Object?.entries(prop).map(([key, value]) => {
-                      console.log(key);
-                      return (
-                        <table key={key} className="table-sm table-borderless">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <b>{key}</b>
-                              </td>
-                              <td>{value}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      );
-                    });
-                  })}
-                </div>
-                <div className="about-detail">
-                  <h2>About this item</h2>
-                  <ul>
-                    <li>{product?.description}</li>
-                    <li>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry. Lorem Ipsum has been the industry's
-                      standard dummy text ever since the 1500s, when an unknown
-                      printer took a galley of type and scrambled it to make a
-                      type specimen book.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-3">
-                <div className="detail-side py-2 px-5">
-                  <h2>
-                    <sup>$</sup> <span>{product?.price}</span>
-                  </h2>
-                  {
-                    <h3>
-                      No Import Fees Deposit & $19.09 Shipping to Nigeria
-                      Details Delivery {month} {date} - {newMonth} {newDate}
-                    </h3>
-                  }
-                  <h3 className="mt-3 mb-3">
-                    Or fastest delivery {fastestDelDay},{fastestDelMonth}{" "}
-                    {fastestDelDate}. Order within 5 hrs 38 mins
-                  </h3>
-                  {product?.countInStock > 1 ? (
-                    <h3 className="success">Available in stock</h3>
-                  ) : (
-                    <h4 className="danger">Out of stock</h4>
-                  )}
-                  <div className="side-select">
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                      value={qty}
-                      onChange={(e) => setQty(e.target.value)}
-                    >
-                      {[...Array(product?.countInStock).keys()].map((x) => {
-                        return (
-                          <option value={x + 1} key={x + 1}>
-                            {x + 1}
-                          </option>
-                        );
-                      })}
-                    </select>
-                    <div class="d-grid gap-2 col-6 mt-3 mb-3 w-100">
-                      <button
-                        class="btn btn-warning"
-                        type="button"
-                        onClick={AddToCartHandler}
-                      >
-                        Add to cart
-                      </button>
-                      <button class="btn btn-danger" type="button" disabled>
-                        Buy Now
-                      </button>
-                    </div>
-                    <div className="d-flex gap-15 align-items-center">
-                      <FaLock className="mb-0" />
-                      <h3 className="mb-0">Secure transaction</h3>
-                    </div>
-                    <table class="table-sm table-borderless">
-                      <tbody>
-                        <tr>
-                          <td>
-                            <b>Ships from </b>
-                          </td>
-                          <td>Amazon.com</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <b>Sold by</b>
-                          </td>
-                          <td>Amazon.com</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <b>Gift options</b>
-                          </td>
-                          <td>Add at checkout</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <div className="review-section row py-4 mt-3 mb-3">
-                <div className="col-8">
-                  <p>REVIEWS</p>
-                  {product?.reviews.length === 0 && (
-                    <div className="please-login alert-danger">
-                      <p className="mb-0">No reviews</p>
-                    </div>
-                  )}
-                  {product?.reviews.map((review) => {
-                    return (
-                      <div className="reviewss">
-                        <b className="user-text">{review.name}</b>
-                        <ReactStars
-                          count={5}
-                          size={16}
-                          value={review?.rating}
-                          edit={false}
-                          activeColor="#ffd700"
-                        />
-                        {moment(review?.createdAt).calendar()}
-                        {/* <p>{moment(review.createdAt).calender()}</p> */}
-                        <div className="commented">{review?.comment}</div>
-                      </div>
-                    );
-                  })}
-                </div>
+            {/* FOR LARGE SCREEN */}
+            {loading ? (
+              <LazyLoading />
+            ) : (
+              <div className="row d-none d-lg-flex">
                 <div className="col-4">
-                  <p>WRITE A CUSTOMER REVIEW</p>
-                  <div className="">
-                    {loadingCreateReview && <Loading />}
-                    {errorCreateReview && (
-                      <Message variant="alert-danger">
-                        {errorCreateReview}
-                      </Message>
-                    )}
-                  </div>
-                  {userInfo ? (
-                    <form onSubmit={(e) => submitHandler(e)}>
-                      <div className="review-rating-comment">
-                        <strong>Rating</strong>
-                        <select
-                          value={rating}
-                          onChange={(e) => setRating(e.target.value)}
-                        >
-                          <option value="">select...</option>
-                          <option value="1">Poor</option>
-                          <option value="2">Fair</option>
-                          <option value="3">Good</option>
-                          <option value="4">Very good</option>
-                          <option value="5">Excellent</option>
-                        </select>
-                      </div>
-                      <div className="review-rating-comment">
-                        <strong>Comment</strong>
-                        <textarea
-                          value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                        />
-                      </div>
-                      <div className="submit-review-btn">
-                        <button
-                          className="submit-review-btnn"
-                          disabled={loadingCreateReview}
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </form>
-                  ) : (
-                    <div className="please-login alert-danger">
-                      <p className="mb-0">
-                        Please <Link to={"/login"}>"Login"</Link> to write a
-                        review
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {products?.length && (
-                <section className="featured-wrapper home-wrapper py-3 mt-0 px-3 mb-2 mt-2">
-                  <div className="container-xxl">
-                    <div className="row">
-                      {products?.length && (
-                        <div className="col-12">
-                          <h2 className="section-heading text-center">
-                            YOU MAY ALSO LIKE
-                          </h2>
-                        </div>
-                      )}
-                      <Carousel
-                        additionalTransfrom={0}
-                        arrows
-                        autoPlaySpeed={3000}
-                        centerMode={false}
-                        className=""
-                        containerClass="container"
-                        dotListClass=""
-                        draggable
-                        focusOnSelect={false}
-                        infinite={false}
-                        itemClass=""
-                        keyBoardControl
-                        minimumTouchDrag={80}
-                        pauseOnHover
-                        renderArrowsWhenDisabled={false}
-                        renderButtonGroupOutside={false}
-                        renderDotsOutside={false}
-                        responsive={{
-                          desktop: {
-                            breakpoint: {
-                              max: 3000,
-                              min: 1024,
-                            },
-                            items: 5,
-                            partialVisibilityGutter: 40,
-                          },
-                          mobile: {
-                            breakpoint: {
-                              max: 464,
-                              min: 0,
-                            },
-                            items: 3,
-                            partialVisibilityGutter: 30,
-                            slidesToSlide: 1,
-                          },
-                          tablet: {
-                            breakpoint: {
-                              max: 1024,
-                              min: 464,
-                            },
-                            items: 4,
-                            partialVisibilityGutter: 30,
-                            slidesToSlide: 4,
-                          },
-                        }}
-                        rewind={false}
-                        rewindWithAnimation={false}
-                        rtl={false}
-                        shouldResetAutoplay
-                        showDots={false}
-                        sliderClass=""
-                        slidesToSlide={5}
-                        swipeable
-                      >
-                        {products?.map((prod) => {
-                          return (
-                            <div className=" w-100">
-                              <Link to={`/productDetail/${prod?._id}`}>
-                                <div className="productCard">
-                                  <div className="product-img">
-                                    <img src={prod?.image[0].img} />
-                                  </div>
-                                </div>
-                              </Link>
-                            </div>
-                          );
-                        })}
-                      </Carousel>
-                    </div>
-                  </div>
-                </section>
-              )}
-            </div>
-          )}
-
-          {/* FOR MOBILE SCREEN */}
-          <div className="row d-lg-none d-flex">
-            <div className="col-sm-6 col-12">
-              <div>
-                <div className="detail-title">
-                  <h2>{product?.name}</h2>
-                  <Link to={"/store"}>Visit the Amazon Basics Store</Link>
-                  {product?.rating > 0 ? (
-                    <h3 className="mb-0">
-                      {" "}
-                      <ReactStars
-                        count={5}
-                        size={16}
-                        value={product?.rating}
-                        edit={false}
-                        activeColor="#ffd700"
-                      />
-                      {product?.numReviews}{" "}
-                      {product?.numReviews > 1 ? "ratings" : "rating"}
-                    </h3>
-                  ) : (
-                    <h3>No ratings</h3>
-                  )}
-                </div>
-                <div className="d-flex align-items-center  gap-10">
-                  <div className="product-detail-small-img gap-10 w-20">
-                    {product?.image?.map((imgg, index) => {
-                      return (
-                        <div
-                          className="product-detail-small-img-cont "
-                          onMouseOver={() => setImageIndex(index)}
-                        >
-                          <img src={imgg.img} className="img-fluid" />
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div>
-                    <img
-                      src={product?.image?.[imageIndex]?.img}
-                      className="img-fluid product-detail-big-img w-100"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3 detail-content">
-                <h2 className="past-price">
-                  -5% <sup>$</sup> <span>{product?.price}</span> <sup>$</sup>
-                </h2>
-                {/* <h3>Style: <b>Alarm Clock</b></h3> */}
-                {product?.properties?.map((prop) => {
-                  return Object?.entries(prop).map(([key, value]) => {
-                    console.log(key);
-                    return (
-                      <table key={key} className="table-sm table-borderless">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <b>{key}</b>
-                            </td>
-                            <td>{value}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    );
-                  });
-                })}
-              </div>
-            </div>
-            <div className="col-sm-6 col-12">
-              <div className="detail-side py-2 px-5">
-                <h2>
-                  <sup>$</sup> <span>{product?.price}</span>
-                </h2>
-                {
-                  <h3>
-                    No Import Fees Deposit & $19.09 Shipping to Nigeria Details
-                    Delivery {month} {date} - {newMonth} {newDate}
-                  </h3>
-                }
-                <h3 className="mt-3 mb-3">
-                  Or fastest delivery {fastestDelDay}, {fastestDelMonth}{" "}
-                  {fastestDelDate}. Order within 5 hrs 38 mins
-                </h3>
-                {product?.countInStock > 1 ? (
-                  <h3 className="success">Available in stock</h3>
-                ) : (
-                  <h4 className="danger">Out of Stock</h4>
-                )}
-                <div className="side-select">
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                    value={qty}
-                    onChange={(e) => setQty(e.target.value)}
-                  >
-                    {[...Array(product?.countInStock).keys()].map((x) => {
-                      return (
-                        <option value={x + 1} key={x + 1}>
-                          {x + 1}
-                        </option>
-                      );
-                    })}
-                  </select>
-                  <div class="d-grid gap-2 col-6 mt-3 mb-3 w-100">
-                    <button
-                      class="btn btn-warning"
-                      type="button"
-                      onClick={AddToCartHandler}
-                    >
-                      Add to cart
-                    </button>
-                    <button class="btn btn-danger" type="button" disabled>
-                      Buy Now
-                    </button>
-                  </div>
-                  <div className="d-flex gap-15 align-items-center">
-                    <FaLock className="mb-0" />
-                    <h3 className="mb-0">Secure transaction</h3>
-                  </div>
-                  <table class="table-sm table-borderless">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <b>Ships from </b>
-                        </td>
-                        <td>Amazon.com</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Sold by</b>
-                        </td>
-                        <td>Amazon.com</td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <b>Gift options</b>
-                        </td>
-                        <td>Add at checkout</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-12">
-              <div className="about-detail">
-                <h2>About this item</h2>
-                <ul>
-                  <li>{product?.description}</li>
-                </ul>
-              </div>
-            </div>
-            <div className="review-section row py-4 mt-3 mb-3">
-              <div className="col-sm-4 col-12 mb-5">
-                <p>WRITE A CUSTOMER REVIEW</p>
-                <div className="">
-                  {loadingCreateReview && <Loading />}
-                  {errorCreateReview && (
-                    <Message variant="alert-danger">
-                      {errorCreateReview}
-                    </Message>
-                  )}
-                </div>
-                {userInfo ? (
-                  <form onSubmit={(e) => submitHandler(e)}>
-                    <div className="review-rating-comment">
-                      <strong>Rating</strong>
-                      <select
-                        value={rating}
-                        onChange={(e) => setRating(e.target.value)}
-                      >
-                        <option value="">select...</option>
-                        <option value="1">Poor</option>
-                        <option value="2">Fair</option>
-                        <option value="3">Good</option>
-                        <option value="4">Very good</option>
-                        <option value="5">Excellent</option>
-                      </select>
-                    </div>
-                    <div className="review-rating-comment">
-                      <strong>Comment</strong>
-                      <textarea
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                      />
-                    </div>
-                    <div className="submit-review-btn">
-                      <button
-                        className="submit-review-btnn"
-                        disabled={loadingCreateReview}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                ) : (
-                  <div className="please-login alert-danger">
-                    <p className="mb-0">
-                      Please <Link to={"/login"}>"Login"</Link> to write a
-                      review
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="col-sm-8 col-12">
-                <p>REVIEWS</p>
-                {product?.reviews.length === 0 && (
-                  <div className="please-login alert-danger">
-                    <p className="mb-0">No reviews</p>
-                  </div>
-                )}
-                {product?.reviews.map((review) => {
-                  return (
-                    <div className="reviewss">
-                      <b className="user-text">{review?.name}</b>
-                      <ReactStars
-                        count={5}
-                        size={16}
-                        value={review?.rating}
-                        edit={false}
-                        activeColor="#ffd700"
-                      />
-                      {moment(review.createdAt).calendar()}
-                      {/* <p>{moment(review.createdAt).calender()}</p> */}
-                      <div className="commented">{review?.comment}</div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            {products?.length && (
-              <section className="featured-wrapper home-wrapper py-3 px-3 mb-2 mt-2">
-                <div className="container-xxl">
-                  <div className="row">
-                    {products?.length && (
-                      <div className="col-12">
-                        <h2 className="section-heading text-center">
-                          YOU MAY ALSO LIKE
-                        </h2>
-                      </div>
-                    )}
-                    <Carousel
-                      additionalTransfrom={0}
-                      arrows
-                      autoPlaySpeed={3000}
-                      centerMode={false}
-                      className=""
-                      containerClass="container"
-                      dotListClass=""
-                      draggable
-                      focusOnSelect={false}
-                      infinite={false}
-                      itemClass=""
-                      keyBoardControl
-                      minimumTouchDrag={80}
-                      pauseOnHover
-                      renderArrowsWhenDisabled={false}
-                      renderButtonGroupOutside={false}
-                      renderDotsOutside={false}
-                      responsive={{
-                        desktop: {
-                          breakpoint: {
-                            max: 3000,
-                            min: 1024,
-                          },
-                          items: 5,
-                          partialVisibilityGutter: 40,
-                        },
-                        mobile: {
-                          breakpoint: {
-                            max: 464,
-                            min: 0,
-                          },
-                          items: 3,
-                          partialVisibilityGutter: 30,
-                          slidesToSlide: 1,
-                        },
-                        tablet: {
-                          breakpoint: {
-                            max: 1024,
-                            min: 464,
-                          },
-                          items: 4,
-                          partialVisibilityGutter: 30,
-                          slidesToSlide: 4,
-                        },
-                      }}
-                      rewind={false}
-                      rewindWithAnimation={false}
-                      rtl={false}
-                      shouldResetAutoplay
-                      showDots={false}
-                      sliderClass=""
-                      slidesToSlide={5}
-                      swipeable
-                    >
-                      {products?.map((prod) => {
+                  <div className="d-flex align-items-center gap-10">
+                    <div className="product-detail-small-img">
+                      {product?.image?.map((imgg, index) => {
                         return (
-                          <div className=" w-100">
-                            <Link to={`/productDetail/${prod?._id}`}>
-                              <div className="productCard">
-                                <div className="product-img">
-                                  <img src={prod?.image[0].img} />
-                                </div>
-                              </div>
-                            </Link>
+                          <div
+                            className="product-detail-small-img-cont "
+                            onMouseOver={() => setImageIndex(index)}
+                          >
+                            <img src={imgg.img} className="img-fluid" />
                           </div>
                         );
                       })}
-                    </Carousel>
+                    </div>
+                    <div>
+                      <img
+                        src={product?.image?.[imageIndex]?.img}
+                        className="img-fluid product-detail-big-img w-100"
+                      />
+                    </div>
                   </div>
                 </div>
-              </section>
+                <div className="col-5">
+                  <div>
+                    <div className="detail-title">
+                      <h2>{product?.name}</h2>
+                      <Link to={"/store"}>Visit the Amazon Basics Store</Link>
+                      <div className="d-flex align-items-center gap-10">
+                        <div className="d-flex align-items-center ">
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={product?.rating}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          {product?.rating === 0 && (
+                            <p className="mb-0">(No rating)</p>
+                          )}
+                        </div>
+                      </div>
+                      {product?.numReviews > 0 && (
+                        <p>{product?.numReviews} ratings</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-3 detail-content">
+                    <h2 className="past-price">
+                      -5% <sup>$</sup> <span>{product?.price}</span>
+                    </h2>
+                    {product?.properties?.map((prop) => {
+                      return Object?.entries(prop).map(([key, value]) => {
+                        console.log(key);
+                        return (
+                          <table
+                            key={key}
+                            className="table-sm table-borderless"
+                          >
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <b>{key}</b>
+                                </td>
+                                <td>{value}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        );
+                      });
+                    })}
+                  </div>
+                  <div className="about-detail">
+                    <h2>About this item</h2>
+                    <ul>
+                      <li>{product?.description}</li>
+                      <li>
+                        Lorem Ipsum is simply dummy text of the printing and
+                        typesetting industry. Lorem Ipsum has been the
+                        industry's standard dummy text ever since the 1500s,
+                        when an unknown printer took a galley of type and
+                        scrambled it to make a type specimen book.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="col-3">
+                  <div className="detail-side py-2 px-5">
+                    <h2>
+                      <sup>$</sup> <span>{product?.price}</span>
+                    </h2>
+                    {
+                      <h3>
+                        No Import Fees Deposit & $19.09 Shipping to Nigeria
+                        Details Delivery {month} {date} - {newMonth} {newDate}
+                      </h3>
+                    }
+                    <h3 className="mt-3 mb-3">
+                      Or fastest delivery {fastestDelDay},{fastestDelMonth}{" "}
+                      {fastestDelDate}. Order within 5 hrs 38 mins
+                    </h3>
+                    {product?.countInStock > 1 ? (
+                      <h3 className="success">Available in stock</h3>
+                    ) : (
+                      <h4 className="danger">Out of stock</h4>
+                    )}
+                    <div className="side-select">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product?.countInStock).keys()].map((x) => {
+                          return (
+                            <option value={x + 1} key={x + 1}>
+                              {x + 1}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <div class="d-grid gap-2 col-6 mt-3 mb-3 w-100">
+                        <button
+                          class="btn btn-warning"
+                          type="button"
+                          onClick={AddToCartHandler}
+                        >
+                          Add to cart
+                        </button>
+                        <button class="btn btn-danger" type="button" disabled>
+                          Buy Now
+                        </button>
+                      </div>
+                      <div className="d-flex gap-15 align-items-center">
+                        <FaLock className="mb-0" />
+                        <h3 className="mb-0">Secure transaction</h3>
+                      </div>
+                      <table class="table-sm table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <b>Ships from </b>
+                            </td>
+                            <td>Amazon.com</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Sold by</b>
+                            </td>
+                            <td>Amazon.com</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Gift options</b>
+                            </td>
+                            <td>Add at checkout</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="review-section row py-4 mt-3 mb-3">
+                  <div className="col-8">
+                    <p>REVIEWS</p>
+                    {product?.reviews.length === 0 && (
+                      <div className="please-login alert-danger">
+                        <p className="mb-0">No reviews</p>
+                      </div>
+                    )}
+                    {product?.reviews.map((review) => {
+                      return (
+                        <div className="reviewss">
+                          <b className="user-text">{review.name}</b>
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={review?.rating}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          {moment(review?.createdAt).calendar()}
+                          {/* <p>{moment(review.createdAt).calender()}</p> */}
+                          <div className="commented">{review?.comment}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="col-4">
+                    <p>WRITE A CUSTOMER REVIEW</p>
+                    <div className="">
+                      {loadingCreateReview && <Loading />}
+                      {errorCreateReview && (
+                        <Message variant="alert-danger">
+                          {errorCreateReview}
+                        </Message>
+                      )}
+                    </div>
+                    {userInfo ? (
+                      <form onSubmit={(e) => submitHandler(e)}>
+                        <div className="review-rating-comment">
+                          <strong>Rating</strong>
+                          <select
+                            value={rating}
+                            onChange={(e) => setRating(e.target.value)}
+                          >
+                            <option value="">select...</option>
+                            <option value="1">Poor</option>
+                            <option value="2">Fair</option>
+                            <option value="3">Good</option>
+                            <option value="4">Very good</option>
+                            <option value="5">Excellent</option>
+                          </select>
+                        </div>
+                        <div className="review-rating-comment">
+                          <strong>Comment</strong>
+                          <textarea
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                          />
+                        </div>
+                        <div className="submit-review-btn">
+                          <button
+                            className="submit-review-btnn"
+                            disabled={loadingCreateReview}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    ) : (
+                      <div className="please-login alert-danger">
+                        <p className="mb-0">
+                          Please <Link to={"/login"}>"Login"</Link> to write a
+                          review
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+                {products?.length && (
+                  <section className="featured-wrapper home-wrapper py-3 mt-0 px-3 mb-2 mt-2">
+                    <div className="container-xxl">
+                      <div className="row">
+                        {products?.length && (
+                          <div className="col-12">
+                            <h2 className="section-heading text-center">
+                              YOU MAY ALSO LIKE
+                            </h2>
+                          </div>
+                        )}
+                        <Carousel
+                          additionalTransfrom={0}
+                          arrows
+                          autoPlaySpeed={3000}
+                          centerMode={false}
+                          className=""
+                          containerClass="container"
+                          dotListClass=""
+                          draggable
+                          focusOnSelect={false}
+                          infinite={false}
+                          itemClass=""
+                          keyBoardControl
+                          minimumTouchDrag={80}
+                          pauseOnHover
+                          renderArrowsWhenDisabled={false}
+                          renderButtonGroupOutside={false}
+                          renderDotsOutside={false}
+                          responsive={{
+                            desktop: {
+                              breakpoint: {
+                                max: 3000,
+                                min: 1024,
+                              },
+                              items: 5,
+                              partialVisibilityGutter: 40,
+                            },
+                            mobile: {
+                              breakpoint: {
+                                max: 464,
+                                min: 0,
+                              },
+                              items: 3,
+                              partialVisibilityGutter: 30,
+                              slidesToSlide: 1,
+                            },
+                            tablet: {
+                              breakpoint: {
+                                max: 1024,
+                                min: 464,
+                              },
+                              items: 4,
+                              partialVisibilityGutter: 30,
+                              slidesToSlide: 4,
+                            },
+                          }}
+                          rewind={false}
+                          rewindWithAnimation={false}
+                          rtl={false}
+                          shouldResetAutoplay
+                          showDots={false}
+                          sliderClass=""
+                          slidesToSlide={5}
+                          swipeable
+                        >
+                          {products?.map((prod) => {
+                            return (
+                              <div className=" w-100">
+                                <Link to={`/productDetail/${prod?._id}`}>
+                                  <div className="productCard">
+                                    <div className="product-img">
+                                      <img src={prod?.image[0].img} />
+                                    </div>
+                                  </div>
+                                </Link>
+                              </div>
+                            );
+                          })}
+                        </Carousel>
+                      </div>
+                    </div>
+                  </section>
+                )}
+              </div>
+            )}
+
+            {/* FOR MOBILE SCREEN */}
+            {loading ? (
+              <LazyLoading />
+            ) : (
+              <div className="row d-lg-none d-flex">
+                <div className="col-sm-6 col-12">
+                  <div>
+                    <div className="detail-title">
+                      <h2>{product?.name}</h2>
+                      <Link to={"/store"}>Visit the Amazon Basics Store</Link>
+                      {product?.rating > 0 ? (
+                        <h3 className="mb-0">
+                          {" "}
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={product?.rating}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          {product?.numReviews}{" "}
+                          {product?.numReviews > 1 ? "ratings" : "rating"}
+                        </h3>
+                      ) : (
+                        <h3>No ratings</h3>
+                      )}
+                    </div>
+                    <div className="d-flex align-items-center  gap-10">
+                      <div className="product-detail-small-img gap-10 w-20">
+                        {product?.image?.map((imgg, index) => {
+                          return (
+                            <div
+                              className="product-detail-small-img-cont "
+                              onMouseOver={() => setImageIndex(index)}
+                            >
+                              <img src={imgg.img} className="img-fluid" />
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <div>
+                        <img
+                          src={product?.image?.[imageIndex]?.img}
+                          className="img-fluid product-detail-big-img w-100"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="mt-3 detail-content">
+                    <h2 className="past-price">
+                      -5% <sup>$</sup> <span>{product?.price}</span>{" "}
+                      <sup>$</sup>
+                    </h2>
+                    {/* <h3>Style: <b>Alarm Clock</b></h3> */}
+                    {product?.properties?.map((prop) => {
+                      return Object?.entries(prop).map(([key, value]) => {
+                        console.log(key);
+                        return (
+                          <table
+                            key={key}
+                            className="table-sm table-borderless"
+                          >
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <b>{key}</b>
+                                </td>
+                                <td>{value}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        );
+                      });
+                    })}
+                  </div>
+                </div>
+                <div className="col-sm-6 col-12">
+                  <div className="detail-side py-2 px-5">
+                    <h2>
+                      <sup>$</sup> <span>{product?.price}</span>
+                    </h2>
+                    {
+                      <h3>
+                        No Import Fees Deposit & $19.09 Shipping to Nigeria
+                        Details Delivery {month} {date} - {newMonth} {newDate}
+                      </h3>
+                    }
+                    <h3 className="mt-3 mb-3">
+                      Or fastest delivery {fastestDelDay}, {fastestDelMonth}{" "}
+                      {fastestDelDate}. Order within 5 hrs 38 mins
+                    </h3>
+                    {product?.countInStock > 1 ? (
+                      <h3 className="success">Available in stock</h3>
+                    ) : (
+                      <h4 className="danger">Out of Stock</h4>
+                    )}
+                    <div className="side-select">
+                      <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        value={qty}
+                        onChange={(e) => setQty(e.target.value)}
+                      >
+                        {[...Array(product?.countInStock).keys()].map((x) => {
+                          return (
+                            <option value={x + 1} key={x + 1}>
+                              {x + 1}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      <div class="d-grid gap-2 col-6 mt-3 mb-3 w-100">
+                        <button
+                          class="btn btn-warning"
+                          type="button"
+                          onClick={AddToCartHandler}
+                        >
+                          Add to cart
+                        </button>
+                        <button class="btn btn-danger" type="button" disabled>
+                          Buy Now
+                        </button>
+                      </div>
+                      <div className="d-flex gap-15 align-items-center">
+                        <FaLock className="mb-0" />
+                        <h3 className="mb-0">Secure transaction</h3>
+                      </div>
+                      <table class="table-sm table-borderless">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <b>Ships from </b>
+                            </td>
+                            <td>Amazon.com</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Sold by</b>
+                            </td>
+                            <td>Amazon.com</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <b>Gift options</b>
+                            </td>
+                            <td>Add at checkout</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-sm-6 col-12">
+                  <div className="about-detail">
+                    <h2>About this item</h2>
+                    <ul>
+                      <li>{product?.description}</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="review-section row py-4 mt-3 mb-3">
+                  <div className="col-sm-4 col-12 mb-5">
+                    <p>WRITE A CUSTOMER REVIEW</p>
+                    <div className="">
+                      {loadingCreateReview && <Loading />}
+                      {errorCreateReview && (
+                        <Message variant="alert-danger">
+                          {errorCreateReview}
+                        </Message>
+                      )}
+                    </div>
+                    {userInfo ? (
+                      <form onSubmit={(e) => submitHandler(e)}>
+                        <div className="review-rating-comment">
+                          <strong>Rating</strong>
+                          <select
+                            value={rating}
+                            onChange={(e) => setRating(e.target.value)}
+                          >
+                            <option value="">select...</option>
+                            <option value="1">Poor</option>
+                            <option value="2">Fair</option>
+                            <option value="3">Good</option>
+                            <option value="4">Very good</option>
+                            <option value="5">Excellent</option>
+                          </select>
+                        </div>
+                        <div className="review-rating-comment">
+                          <strong>Comment</strong>
+                          <textarea
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                          />
+                        </div>
+                        <div className="submit-review-btn">
+                          <button
+                            className="submit-review-btnn"
+                            disabled={loadingCreateReview}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </form>
+                    ) : (
+                      <div className="please-login alert-danger">
+                        <p className="mb-0">
+                          Please <Link to={"/login"}>"Login"</Link> to write a
+                          review
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="col-sm-8 col-12">
+                    <p>REVIEWS</p>
+                    {product?.reviews.length === 0 && (
+                      <div className="please-login alert-danger">
+                        <p className="mb-0">No reviews</p>
+                      </div>
+                    )}
+                    {product?.reviews.map((review) => {
+                      return (
+                        <div className="reviewss">
+                          <b className="user-text">{review?.name}</b>
+                          <ReactStars
+                            count={5}
+                            size={16}
+                            value={review?.rating}
+                            edit={false}
+                            activeColor="#ffd700"
+                          />
+                          {moment(review.createdAt).calendar()}
+                          {/* <p>{moment(review.createdAt).calender()}</p> */}
+                          <div className="commented">{review?.comment}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                {products?.length && (
+                  <section className="featured-wrapper home-wrapper py-3 px-3 mb-2 mt-2">
+                    <div className="container-xxl">
+                      <div className="row">
+                        {products?.length && (
+                          <div className="col-12">
+                            <h2 className="section-heading text-center">
+                              YOU MAY ALSO LIKE
+                            </h2>
+                          </div>
+                        )}
+                        <Carousel
+                          additionalTransfrom={0}
+                          arrows
+                          autoPlaySpeed={3000}
+                          centerMode={false}
+                          className=""
+                          containerClass="container"
+                          dotListClass=""
+                          draggable
+                          focusOnSelect={false}
+                          infinite={false}
+                          itemClass=""
+                          keyBoardControl
+                          minimumTouchDrag={80}
+                          pauseOnHover
+                          renderArrowsWhenDisabled={false}
+                          renderButtonGroupOutside={false}
+                          renderDotsOutside={false}
+                          responsive={{
+                            desktop: {
+                              breakpoint: {
+                                max: 3000,
+                                min: 1024,
+                              },
+                              items: 5,
+                              partialVisibilityGutter: 40,
+                            },
+                            mobile: {
+                              breakpoint: {
+                                max: 464,
+                                min: 0,
+                              },
+                              items: 3,
+                              partialVisibilityGutter: 30,
+                              slidesToSlide: 1,
+                            },
+                            tablet: {
+                              breakpoint: {
+                                max: 1024,
+                                min: 464,
+                              },
+                              items: 4,
+                              partialVisibilityGutter: 30,
+                              slidesToSlide: 4,
+                            },
+                          }}
+                          rewind={false}
+                          rewindWithAnimation={false}
+                          rtl={false}
+                          shouldResetAutoplay
+                          showDots={false}
+                          sliderClass=""
+                          slidesToSlide={5}
+                          swipeable
+                        >
+                          {products?.map((prod) => {
+                            return (
+                              <div className=" w-100">
+                                <Link to={`/productDetail/${prod?._id}`}>
+                                  <div className="productCard">
+                                    <div className="product-img">
+                                      <img src={prod?.image[0].img} />
+                                    </div>
+                                  </div>
+                                </Link>
+                              </div>
+                            );
+                          })}
+                        </Carousel>
+                      </div>
+                    </div>
+                  </section>
+                )}
+              </div>
             )}
           </div>
         </div>
-      </div>
+      ) : (
+        <LazyLoading />
+      )}
     </>
   );
 };

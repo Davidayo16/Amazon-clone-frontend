@@ -1,5 +1,4 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaTwitter, FaWhatsapp, FaLinkedin } from "react-icons/fa";
 
@@ -16,7 +15,7 @@ const Footer = () => {
         <div className="container-xxl ">
           <div className="row">
             <div className="col-12 col-md-5 d-flex gap-55 align-items-center">
-              <img src="/images/news.svg" />
+              <img src="/images/news.svg" className="img-fluid" />
               <h2>Sign Up For Newsletter </h2>
             </div>
             <div className="col-md-7  my-sm-3">
@@ -39,8 +38,8 @@ const Footer = () => {
 
       <footer className="py-4">
         <div className="container">
-          <div className="d-flex ">
-            <div className="col-6 col-sm-4  d-flex  flex-column ">
+          <div className="row">
+            <div className="col-12 col-sm-4 mb-4 d-flex  flex-column ">
               <h3 className="text-white">Contact Us</h3>
               <div className="">
                 <address>
@@ -76,7 +75,7 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-            <div className="col-4  col-sm-4 d-flex  flex-column align-items-center">
+            <div className="col-12  col-sm-4 d-flex  flex-column align-items-sm-center">
               <h3 className="text-white mb-4">Quick Links</h3>
               <div className="footer-links d-flex flex-column">
                 <Link className="py-2 mb-1" to={"/store"}>
@@ -90,7 +89,7 @@ const Footer = () => {
                 </Link>
               </div>
             </div>
-            <div className="col-4 col-sm-4  d-flex  flex-column align-items-center">
+            <div className="col-12 col-sm-4  d-flex  flex-column align-items-sm-center">
               <h3 className="text-white mb-4">Account</h3>
               <div className="footer-links d-flex flex-column">
                 <Link className="py-2 mb-1">About</Link>

@@ -1,104 +1,189 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
-import Home from "./Pages/Home";
-import Contact from "./Pages/Contact";
-import OurStore from "./Pages/OurStore";
-import Blog from "./Pages/Blog";
-import ProductDetail from "./Pages/ProductDetail";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import Wishlist from "./Pages/Wishlist";
-import Cart from "./Pages/Cart";
-import ScrollToTop from "./components/GoToTop";
-import Shipping from "./Pages/Shipping";
-import PaymentScreen from "./Pages/PaymentScreen";
-import PlaceOrder from "./Pages/PlaceOrder";
-import Order from "./Pages/Order";
-import ProfileScreen from "./Pages/ProfileScreen";
-import CheckoutSuccess from "./Pages/CheckoutSuccess";
-import BlogDetail from "./Pages/BlogDetail";
 import PrivateRouter from "./PrivateRouter";
+import ScrollToTop from "./components/GoToTop";
+import LazyLoading from "./Loading/Error/LazyLoading";
+
+// Lazy-loaded components
+const LazyHome = lazy(() => import("./Pages/Home"));
+const LazyContact = lazy(() => import("./Pages/Contact"));
+const LazyOurStore = lazy(() => import("./Pages/OurStore"));
+const LazyBlog = lazy(() => import("./Pages/Blog"));
+const LazyProductDetail = lazy(() => import("./Pages/ProductDetail"));
+const LazyLogin = lazy(() => import("./Pages/Login"));
+const LazyRegister = lazy(() => import("./Pages/Register"));
+const LazyWishlist = lazy(() => import("./Pages/Wishlist"));
+const LazyCart = lazy(() => import("./Pages/Cart"));
+const LazyShipping = lazy(() => import("./Pages/Shipping"));
+const LazyPaymentScreen = lazy(() => import("./Pages/PaymentScreen"));
+const LazyPlaceOrder = lazy(() => import("./Pages/PlaceOrder"));
+const LazyOrder = lazy(() => import("./Pages/Order"));
+const LazyProfileScreen = lazy(() => import("./Pages/ProfileScreen"));
+const LazyCheckoutSuccess = lazy(() => import("./Pages/CheckoutSuccess"));
+const LazyBlogDetail = lazy(() => import("./Pages/BlogDetail"));
 
 const App = () => {
   return (
-    <>
-      <BrowserRouter>
-        <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="store" element={<OurStore />} />
-              <Route path="store/:id?" element={<OurStore />} exact />
-              <Route path="blog" element={<Blog />} />
-              <Route path="contact" element={<Contact />} />
-              <Route
-                path="wishlist"
-                element={
-                  <PrivateRouter>
-                    <Wishlist />
-                  </PrivateRouter>
-                }
-              />
-              <Route path="cart" element={<Cart />} />
-              <Route
-                path="shipping"
-                element={
-                  <PrivateRouter>
-                    <Shipping />
-                  </PrivateRouter>
-                }
-              />
-              <Route
-                path="payment"
-                element={
-                  <PrivateRouter>
-                    <PaymentScreen />
-                  </PrivateRouter>
-                }
-              />
-              <Route
-                path="placeorder"
-                element={
-                  <PrivateRouter>
-                    <PlaceOrder />
-                  </PrivateRouter>
-                }
-              />
-              <Route
-                path="/order/:id"
-                element={
-                  <PrivateRouter>
-                    <Order />
-                  </PrivateRouter>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <PrivateRouter>
-                    <ProfileScreen />
-                  </PrivateRouter>
-                }
-              />
-              <Route path="/checkout-success" element={<CheckoutSuccess />} />
-              <Route path="productDetail/:id" element={<ProductDetail />} />
-              <Route
-                path="blogDetail/:id"
-                element={
-                  <PrivateRouter>
-                    <BlogDetail />
-                  </PrivateRouter>
-                }
-              />
-            </Route>
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-          </Routes>
-        </ScrollToTop>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="/"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyHome />
+                </Suspense>
+              }
+            />
+            <Route
+              path="contact"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyContact />
+                </Suspense>
+              }
+            />
+            <Route
+              path="store"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyOurStore />
+                </Suspense>
+              }
+            />
+            <Route
+              path="store/:id?"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyOurStore />
+                </Suspense>
+              }
+              exact
+            />
+            <Route
+              path="blog"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyBlog />
+                </Suspense>
+              }
+            />
+            <Route
+              path="wishlist"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyWishlist />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="cart"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyCart />
+                </Suspense>
+              }
+            />
+            <Route
+              path="shipping"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyShipping />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="payment"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyPaymentScreen />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="placeorder"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyPlaceOrder />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="/order/:id"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyOrder />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyProfileScreen />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+            <Route
+              path="/checkout-success"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyCheckoutSuccess />
+                </Suspense>
+              }
+            />
+            <Route
+              path="productDetail/:id"
+              element={
+                <Suspense fallback={<LazyLoading />}>
+                  <LazyProductDetail />
+                </Suspense>
+              }
+            />
+            <Route
+              path="blogDetail/:id"
+              element={
+                <PrivateRouter>
+                  <Suspense fallback={<LazyLoading />}>
+                    <LazyBlogDetail />
+                  </Suspense>
+                </PrivateRouter>
+              }
+            />
+          </Route>
+          <Route
+            path="login"
+            element={
+              <Suspense fallback={<LazyLoading />}>
+                <LazyLogin />
+              </Suspense>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <Suspense fallback={<LazyLoading />}>
+                <LazyRegister />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </ScrollToTop>
+    </BrowserRouter>
   );
 };
 
