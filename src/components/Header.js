@@ -34,7 +34,8 @@ const Header = () => {
       history("/");
     }
   };
-
+  const userDetails = useSelector((state) => state.userDetails);
+  const { user } = userDetails;
   return (
     <>
       {/****HEADER FOR LARGE SCREEN *****/}
@@ -66,6 +67,7 @@ const Header = () => {
             <div className="col-md-4 col-sm-12 ">
               <div className="header-upper-links d-flex justify-content-between align-items-center">
                 <div className="header-items">
+                  <p style={{ color: "white" }}>{user?.wishlist?.length}</p>
                   <Link
                     to={"/wishlist"}
                     className="d-flex align-items-center text-white gap-10"
@@ -121,7 +123,7 @@ const Header = () => {
                     to={"/cart"}
                     className="d-flex align-items-center text-white gap-10"
                   >
-                    <img src="/images/cart.svg" />
+                    <img src="/images/cart.png" />
                     <span className="badge">{cartItems.length}</span>
                   </Link>
                 </div>

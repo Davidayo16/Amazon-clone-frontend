@@ -5,6 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./../Redux/Action/CartActions";
 import { addToWishlist } from "../Redux/Action/ProductAction";
+import { getUserDetails } from "../Redux/Action/UserAction";
 
 const ProductCard = ({ grid, product, products }) => {
   let location = useLocation();
@@ -20,16 +21,18 @@ const ProductCard = ({ grid, product, products }) => {
         ?.filter((pro) => pro?._id === product?._id)
         .some((p) => wish?.includes(p?._id))
     );
-  }, [products]);
-
-  // **** ADD TO CART
-  const AddToCartHandler = (id) => {
-    dispatch(addToCart(id, 1));
-  };
+  }, [products, wish]);
   const addWishlist = (proId) => {
     dispatch(addToWishlist({ proId }));
     setIsLiked(!isLiked);
   };
+
+  // **** ADD TO CART
+  const AddToCartHandler = (id) => {
+    dispatch(addToCart(id, 1));
+    dispatch(getUserDetails("profile"));
+  };
+
   return (
     <>
       {/******** PRODUCT CARD *********/}
