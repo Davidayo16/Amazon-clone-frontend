@@ -67,7 +67,6 @@ const Header = () => {
             <div className="col-md-4 col-sm-12 ">
               <div className="header-upper-links d-flex justify-content-between align-items-center">
                 <div className="header-items">
-                  <p style={{ color: "white" }}>{user?.wishlist?.length}</p>
                   <Link
                     to={"/wishlist"}
                     className="d-flex align-items-center text-white gap-10"
